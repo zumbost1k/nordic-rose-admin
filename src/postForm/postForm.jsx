@@ -1,4 +1,20 @@
 import React, { useState } from 'react';
+import {
+  HtmlEditor,
+  Inject,
+  QuickToolbar,
+  RichTextEditorComponent,
+  Toolbar,
+} from '@syncfusion/ej2-react-richtexteditor';
+import '@syncfusion/ej2-base/styles/bootstrap5.css';
+import '@syncfusion/ej2-icons/styles/bootstrap5.css';
+import '@syncfusion/ej2-buttons/styles/bootstrap5.css';
+import '@syncfusion/ej2-splitbuttons/styles/bootstrap5.css';
+import '@syncfusion/ej2-inputs/styles/bootstrap5.css';
+import '@syncfusion/ej2-lists/styles/bootstrap5.css';
+import '@syncfusion/ej2-navigations/styles/bootstrap5.css';
+import '@syncfusion/ej2-popups/styles/bootstrap5.css';
+import '@syncfusion/ej2-richtexteditor/styles/bootstrap5.css';
 
 const PostForm = () => {
   const [postHeader, setPostHeader] = useState('');
@@ -6,6 +22,7 @@ const PostForm = () => {
   const [tags, setTags] = useState([]);
   const [tagsText, setTagsText] = useState('');
   const [postPhoto, setPostPhoto] = useState(null);
+
   const createPostHandle = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -24,9 +41,9 @@ const PostForm = () => {
       className='border border-dark mx-auto my-4 rounded-2 w-25'
       style={{ minWidth: '500px' }}
     >
-      <div class='form-group p-5 d-flex flex-column gap-5'>
+      <div className='form-group p-5 d-flex flex-column gap-5'>
         <div>
-          <label for='header' className='fs-4'>
+          <label htmlFor='header' className='fs-4'>
             post header
           </label>
           <input
@@ -36,27 +53,17 @@ const PostForm = () => {
               setPostHeader(e.target.value);
             }}
             type='text'
-            class='form-control m-1'
+            className='form-control m-1'
             id='header'
           />
         </div>
         <div>
-          <label htmlFor='text' className='fs-4'>
-            post text
-          </label>
-          <input
-            required
-            value={postText}
-            onChange={(e) => {
-              setPostText(e.target.value);
-            }}
-            type='text'
-            class='form-control m-1'
-            id='text'
-          />
+          <RichTextEditorComponent change={(e) => setPostText(e.value)}>
+            <Inject services={[Toolbar, HtmlEditor, QuickToolbar]} />
+          </RichTextEditorComponent>
         </div>
-        <div class='mb-3'>
-          <label htmlFor='formFile' class='form-label'>
+        <div className='mb-3'>
+          <label htmlFor='formFile' className='form-label'>
             photo
           </label>
           <input
@@ -64,7 +71,7 @@ const PostForm = () => {
             onChange={(e) => {
               setPostPhoto(e.target.files[0]);
             }}
-            class='form-control'
+            className='form-control'
             type='file'
             id='formFile'
           />
@@ -80,11 +87,11 @@ const PostForm = () => {
                 setTagsText(e.target.value);
               }}
               type='tag-text'
-              class='form-control'
+              className='form-control'
               id='text'
             />
             <button
-              class='btn btn-secondary'
+              className='btn btn-secondary'
               type='button'
               onClick={() => {
                 setTags(tags.concat(tagsText));
