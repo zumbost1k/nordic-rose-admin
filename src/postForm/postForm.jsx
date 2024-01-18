@@ -33,6 +33,13 @@ const PostForm = () => {
     fetch('http://localhost:5000/api/post/', {
       method: 'POST',
       body: formData,
+    }).then((response) => {
+      if (response.ok) {
+        setPostText('');
+        setPostHeader('');
+        setPostPhoto(null);
+        setTags([]);
+      }
     });
   };
   return (
@@ -94,8 +101,10 @@ const PostForm = () => {
               className='btn btn-secondary'
               type='button'
               onClick={() => {
-                setTags(tags.concat(tagsText));
-                setTagsText('');
+                if (!!tagsText.length) {
+                  setTags(tags.concat(tagsText));
+                  setTagsText('');
+                }
               }}
             >
               add tag
