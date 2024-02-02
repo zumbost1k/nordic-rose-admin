@@ -30,7 +30,7 @@ const PostForm = () => {
     formData.append('tags', JSON.stringify(tags));
     formData.append('header', postHeader);
     formData.append('img', postPhoto);
-    fetch('https://nordic-rose-server.vercel.app/api/post/', {
+    fetch('http://localhost:5000/api/post/', {
       method: 'POST',
       body: formData,
     }).then((response) => {
