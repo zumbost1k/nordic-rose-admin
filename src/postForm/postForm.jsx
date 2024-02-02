@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './postForm.css';
 
 const PostForm = () => {
   const [postHeader, setPostHeader] = useState('');
@@ -8,7 +7,6 @@ const PostForm = () => {
   const [tagsText, setTagsText] = useState('');
   const [postPhoto, setPostPhoto] = useState(null);
   const createPostHandle = (e) => {
-    e.preventDefault();
     const formData = new FormData();
     formData.append('text', postText);
     formData.append('tags', JSON.stringify(tags));
