@@ -24,12 +24,13 @@ const PostForm = () => {
   const [postPhoto, setPostPhoto] = useState(null);
 
   const createPostHandle = (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append('text', postText);
     formData.append('tags', JSON.stringify(tags));
     formData.append('header', postHeader);
     formData.append('img', postPhoto);
-    fetch('http://localhost:5000/api/post/', {
+    fetch('https://nordic-rose-server-production.up.railway.app/api/post/', {
       method: 'POST',
       body: formData,
     }).then((response) => {
